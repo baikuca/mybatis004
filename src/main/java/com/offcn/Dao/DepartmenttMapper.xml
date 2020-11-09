@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.offcn.Dao.DepartmenttMapper">
+    <select id="selectDepartmentByDid" resultMap="DepartmentResultMap">
+        select * from department where d_id = #{id}
+    </select>
+    <resultMap id="DepartmentResultMap" type="Department">
+        <id column="d_id" property="did"></id>
+        <result column="d_name" property="dname"></result>
+        <collection property="people" ofType="Person" column="d_id" select="com.offcn.Dao.PersonnMapper.getPersonByDid">
+        </collection>
+    </resultMap>
+
+</mapper>

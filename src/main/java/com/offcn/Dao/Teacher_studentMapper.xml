@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.offcn.Dao.Teacher_studentMapper">
+    <select id="getTeacher_StudentByID" resultMap="Teacher_StudentResultMap">
+        select * from teacher_student where s_id = #{id}
+    </select>
+    <resultMap id="Teacher_StudentResultMap" type="Teacher_student">
+        <id column="s_id" property="sid"></id>
+        <result column="t_id" property="tid"></result>
+        <association property="teacher"  column="t_id" select="com.offcn.Dao.TeacherMapper.getTeacherById">
+        </association>
+    </resultMap>
+
+</mapper>
